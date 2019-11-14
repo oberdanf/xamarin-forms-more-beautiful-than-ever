@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:DotNetConfFloripa.ViewModels"
+             mc:Ignorable="d"
+             Title="{Binding Title}"
+             x:Class="DotNetConfFloripa.Views.CollectionViewPage">
+    <ContentPage.BindingContext>
+        <vm:CollectionViewViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <RefreshView
+            RefreshColor="Orange"
+            BackgroundColor="#E6E5E6"
+            IsRefreshing="{Binding IsBusy}"
+            Command="{Binding LoadMoreCommand}">
+            <CollectionView
+                ItemsSource="{Binding DataList}">
+
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout
+                        VerticalItemSpacing="2"
+                        HorizontalItemSpacing="2"
+                        Orientation="Vertical"
+                        Span="2" />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.EmptyView>
+                    <Label
+                        VerticalTextAlignment="Center"
+                        HorizontalTextAlignment="Center"
+                        Text="Sem dados.."
+                        FontSize="Title"
+                        FontAttributes="Bold"/>
+                </CollectionView.EmptyView>
+
+                <CollectionView.Header>
+                    <Label Text="Oi. Eu sou o header do CollectionView" FontSize="Title" />
+                </CollectionView.Header>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid
+                            Padding="5"
+                            HeightRequest="300">
+                            <Image Aspect="AspectFill"
+                                    Source="{Binding ImageUrl}"/>
+                            <BoxView Color="Black"
+                                      Opacity="0.7" />
+                            <StackLayout VerticalOptions="End"
+                                         Margin="20"
+                                         Spacing="0">
+                                <Label TextColor="GreenYellow"
+                                       HorizontalOptions="End"
+                                       FontSize="Title"
+                                       Text="{Binding Name}" />
+                                <BoxView Margin="0,0,0,0"
+                                         HorizontalOptions="End"
+                                         HeightRequest="3"
+                                         WidthRequest="200"
+                                         Color="White" />
+                                <Label FontSize="Subtitle"
+                                       TextColor="White"
+                                       HorizontalTextAlignment="End"
+                                       Text="{Binding Description}" />
+                            </StackLayout>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+    </ContentPage.Content>
+</ContentPage>

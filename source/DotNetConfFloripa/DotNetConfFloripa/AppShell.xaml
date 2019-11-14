@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms" 
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+       mc:Ignorable="d"
+       xmlns:local="clr-namespace:DotNetConfFloripa.Views"
+       Title="DotNetConfFloripa"
+       Shell.NavBarIsVisible="True"
+       x:Class="DotNetConfFloripa.AppShell">
+
+    <!-- 
+        Styles and Resources 
+    -->
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Color x:Key="NavigationPrimary">#2196F3</Color>
+            <Style x:Key="BaseStyle" TargetType="Element">
+                <Setter Property="Shell.BackgroundColor" Value="{StaticResource NavigationPrimary}" />
+                <Setter Property="Shell.ForegroundColor" Value="White" />
+                <Setter Property="Shell.TitleColor" Value="White" />
+                <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
+                <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="White"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="White"/>
+            </Style>
+            <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
+            <Style TargetType="ShellItem"
+               BasedOn="{StaticResource BaseStyle}" />
+
+            <Style x:Key="HomeTabShell"
+               TargetType="Element"
+               BasedOn="{StaticResource BaseStyle}">
+                <Setter Property="Shell.BackgroundColor"
+                    Value="#039BE6" />
+            </Style>
+
+            <Style x:Key="AboutTabShell"
+               TargetType="Element"
+               BasedOn="{StaticResource BaseStyle}">
+                <Setter Property="Shell.BackgroundColor"
+                    Value="Fuchsia" />
+            </Style>
+            
+            <Style x:Key="CollectionViewTabShell"
+               TargetType="Element"
+               BasedOn="{StaticResource BaseStyle}">
+                <Setter Property="Shell.BackgroundColor"
+                    Value="OrangeRed" />
+            </Style>
+            
+            <Style x:Key="CarouselViewTabShell"
+               TargetType="Element"
+               BasedOn="{StaticResource BaseStyle}">
+                <Setter Property="Shell.BackgroundColor"
+                    Value="DarkGreen" />
+            </Style>
+        </ResourceDictionary>
+    </Shell.Resources>
+
+    <Shell.FlyoutHeader>
+        <Label HeightRequest="200"
+               BackgroundColor="Azure"
+               FontSize="Title"
+               TextColor="Black"
+               Text ="dotNetConf Floripa 2019"
+               VerticalTextAlignment="Center"
+               HorizontalTextAlignment="Center" />
+    </Shell.FlyoutHeader>
+
+     <!--FLYOUT APP-->
+    <FlyoutItem Title="Home"
+                Icon="tab_feed.png"
+                Route="main">
+        <Tab Title="Home"
+                 Icon="tab_feed.png"
+                 Style="{StaticResource HomeTabShell}"
+                 Route="about">
+            <ShellContent Route="home"
+                              ContentTemplate="{DataTemplate local:ItemsPage}" />
+        </Tab>
+        <ShellContent Route="about"
+                          Icon="tab_about.png"
+                          Title="Sobre"
+                          Style="{StaticResource AboutTabShell}"
+                          ContentTemplate="{DataTemplate local:AboutPage}" />
+        <ShellContent Route="collectionView"
+                      Icon="tab_feed.png"
+                      Title="CollectionView"
+                      Style="{StaticResource CollectionViewTabShell}"
+                      ContentTemplate="{DataTemplate local:CollectionViewPage}" />
+        <ShellContent Route="carouselView"
+                      Icon="tab_about.png"
+                      Title="CarouselView"
+                      Style="{StaticResource CarouselViewTabShell}"
+                      ContentTemplate="{DataTemplate local:CarouselViewPage}" />
+    </FlyoutItem>
+
+
+     <!--MENU ITEMS--> 
+    <MenuItem Text="Ajustes" />
+    <MenuItem Text="Ajuda" />
+
+    <!-- NO FLYOUT APP-->
+    <!--<TabBar>
+        <Tab Title="Home"
+             Icon="tab_feed.png">
+            <ShellContent Title="Tab 1"
+                          ContentTemplate="{DataTemplate local:ItemsPage}" />
+            <ShellContent Title="Tab 2"
+                          ContentTemplate="{DataTemplate local:ItemsPage}" />
+        </Tab>
+        <Tab Title="About"
+             Icon="tab_about.png">
+            <ShellContent Title="About"
+                          ContentTemplate="{DataTemplate local:AboutPage}" />
+        </Tab>
+    </TabBar>-->
+</Shell>

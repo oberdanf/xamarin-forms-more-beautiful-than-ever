@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:DotNetConfFloripa.ViewModels"
+             mc:Ignorable="d"
+             Title="{Binding Title}"
+             x:Class="DotNetConfFloripa.Views.CarouselViewPage">
+    <ContentPage.BindingContext>
+        <vm:CarouselViewViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <CarouselView
+            BackgroundColor="DarkGray"
+            VerticalOptions="Center"
+            NumberOfSideItems="1"
+            PeekAreaInsets="200"
+            HorizontalOptions="Center"
+            ItemsSource="{Binding DataList}">
+            <CarouselView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Image Source="{Binding ImageUrl}"
+                                Aspect="AspectFit"
+                                Grid.RowSpan="2"/>
+                        <StackLayout Padding="0"
+                                     Grid.Row="1"
+                                     VerticalOptions="End">
+                            <Label
+                                Text="{Binding Name}"
+                                TextColor="Black"
+                                FontAttributes="Bold"
+                                FontSize="Large" />
+                            <Label
+                                Text="{Binding Description}"
+                                TextColor="Black"
+                                FontSize="Medium" />
+                        </StackLayout>
+                    </Grid>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+    </ContentPage.Content>
+</ContentPage>
